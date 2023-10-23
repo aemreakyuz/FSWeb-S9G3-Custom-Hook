@@ -1,7 +1,7 @@
-import { useState } from "react";
+import useLocalStorage from "./useLocalStorage";
 
 const useGeceModu = (initialValue) => {
-  const [geceModu, setGeceModu] = useState(initialValue);
+  const [geceModu, setGeceModu] = useLocalStorage("geceModu", initialValue);
 
   const toggleMode = (e) => {
     e.preventDefault();

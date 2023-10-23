@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function useLocalStorage(key, initialValue) {
   const readFromLS = () => {
     return JSON.parse(localStorage.getItem(key));
   };
   const [value, setValue] = useState(() => {
-    const lsOrDie = readFromLS() || initialValue;
+    const lsOrDie = readFromLS() !== null ? readFromLS() : initialValue;
+
     localStorage.setItem(key, JSON.stringify(initialValue));
     return lsOrDie;
   });

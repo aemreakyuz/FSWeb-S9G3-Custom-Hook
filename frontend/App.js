@@ -4,13 +4,11 @@ import axios from "axios";
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 import useGeceModu from "./hooks/useGeceModu";
-import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
-  const [geceModu, toggleHandler] = useGeceModu(true);
 
-  const [lsData, writeToLS] = useLocalStorage("geceModu", "İlk Data");
+  const [geceModu, toggleHandler] = useGeceModu(true);
 
   useEffect(() => {
     axios
@@ -22,7 +20,6 @@ const App = () => {
   }, []);
   return (
     <div className={geceModu ? "dark-mode App" : "App"}>
-      <h1 onClick={() => writeToLS("darkMode")}>Local Storage: {lsData}</h1>
       <Navbar geceModu={geceModu} toggleHandler={toggleHandler} />
       <Charts coinData={coinData} />
     </div>
